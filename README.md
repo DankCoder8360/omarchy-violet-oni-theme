@@ -9,7 +9,7 @@ A dark purple [Omarchy](https://omarchy.org/) theme with jade-green and moonlit-
 Copy this repository's public GitHub URL into **Install → Style → Theme** in the Omarchy menu. From a terminal, replace the example owner with the repository owner:
 
 ```bash
-omarchy theme install https://github.com/YOUR_GITHUB_USERNAME/omarchy-violet-oni-theme
+omarchy theme install https://github.com/DankCoder8360/omarchy-violet-oni-theme
 ```
 
 After installation, choose **Violet Oni** in the theme selector or run:
