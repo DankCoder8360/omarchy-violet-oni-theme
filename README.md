@@ -1,0 +1,56 @@
+# Violet Oni
+
+A dark purple [Omarchy](https://omarchy.org/) theme with jade-green and moonlit-blue accents, inspired by the early Edo Kyoto setting of **Onimusha: Way of the Sword**.
+
+![Violet Oni running on an Omarchy desktop with Alacritty and Neovim](preview.png)
+
+## Install
+
+Copy this repository's public GitHub URL into **Install → Style → Theme** in the Omarchy menu. From a terminal, replace the example owner with the repository owner:
+
+```bash
+omarchy theme install https://github.com/YOUR_GITHUB_USERNAME/omarchy-violet-oni-theme
+```
+
+After installation, choose **Violet Oni** in the theme selector or run:
+
+```bash
+omarchy theme set "Violet Oni"
+```
+
+Select any other theme through the same menu to switch back.
+
+## Palette
+
+| Role | Color |
+| --- | --- |
+| Background | `#140F1F` |
+| Raised surface | `#241733` |
+| Violet accent | `#AD86E8` |
+| Jade green | `#72C99A` |
+| Moonlit blue | `#77AEEC` |
+| Foreground | `#E5DDF0` |
+
+The complete palette includes distinct error, warning, cyan, and bright terminal colors. Main text has a 14.25:1 contrast ratio against the background.
+
+## Omarchy integration
+
+`colors.toml` is the source of truth. Omarchy generates the active terminal, Hyprland, shell, and application configurations from its own templates when the theme is selected. These cover Alacritty, Foot, Ghostty, Kitty, btop, Chromium, Neovim, Helix, VS Code, Obsidian, and the native bar, menus, notifications, OSD, and lock screen where those integrations are enabled.
+
+Native gradient tokens provide violet-to-blue active borders, and `icons.theme` selects Omarchy's Yaru-purple icons. The theme keeps Omarchy's layout, font sizing, spacing, and display scaling. No executable theme overrides, plugins, or custom application installations are bundled.
+
+Validated against the Omarchy installation available on September 7, 2026: all 17 generated configurations resolved their templates; TOML/JSON parsed and Lua passed syntax checks. The screenshot above is a real 2560 × 1440 desktop with Alacritty and Neovim, reviewed after applying the theme. See [validation results](validation/report.json).
+
+## Wallpaper and resolution
+
+- [1440p wallpaper](backgrounds/01-violet-oni-2560x1440.png): 2560 × 1440, used by the theme.
+- [4K export](artwork/violet-oni-3840x2160.png): 3840 × 2160.
+- [Original selected source](artwork/violet-oni-source.png): 1672 × 941.
+
+The cinematic wallpaper is AI-generated using the built-in image generation tool. The **1440p and 4K files are Lanczos-upscaled exports**, not native artwork at those resolutions. The real desktop screenshot is captured at 2560 × 1440; it is not an upscaled screenshot. The background composition works independently on multiple 16:9 monitors.
+
+[Prompts and generation details](artwork/PROMPTS.md) are included. The earlier illustrative mockup is retained separately as `artwork/preview-concept.png`; it is not the gallery submission screenshot.
+
+## License and attribution
+
+MIT; see [LICENSE](LICENSE). See [NOTICE](NOTICE) for artwork provenance and game attribution. Violet Oni is an unofficial theme, not an official Capcom product.

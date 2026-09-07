@@ -1,0 +1,60 @@
+{
+  "result": "passed",
+  "templates_generated": 17,
+  "generated_files": [
+    "alacritty.toml",
+    "btop.theme",
+    "chromium.theme",
+    "claude.json",
+    "foot.ini",
+    "ghostty.conf",
+    "gum_env.lua",
+    "helix.toml",
+    "hyprland-preview-share-picker.css",
+    "hyprland.lua",
+    "keyboard.rgb",
+    "kitty.conf",
+    "neovim.lua",
+    "obsidian.css",
+    "pi.json",
+    "shell.toml",
+    "vscode-theme.json"
+  ],
+  "checks": [
+    "All placeholders resolved",
+    "Generated TOML and JSON parsed",
+    "Generated Lua syntax parsed",
+    "Hyprland gradient table evaluated with a stub",
+    "Text and semantic colors exceed 4.5:1 on checked backgrounds",
+    "Wallpaper export dimensions checked"
+  ],
+  "contrast_ratios": {
+    "foreground / background": 14.25,
+    "dark_foreground / background": 7.49,
+    "muted / background": 5.42,
+    "foreground / lighter_background": 12.79,
+    "selection_foreground / selection_background": 9.91,
+    "accent / background": 6.58,
+    "green / background": 9.43,
+    "blue / background": 8.1,
+    "red / background": 7.95,
+    "yellow / background": 10.77,
+    "cyan / background": 10.18
+  },
+  "wallpaper_dimensions": {
+    "backgrounds/01-violet-oni-2560x1440.png": "2560x1440",
+    "artwork/violet-oni-3840x2160.png": "3840x2160"
+  },
+  "limitations": [
+    "Wallpaper exports are upscaled from a 1672x941 AI-generated source."
+  ],
+  "visual_verification": {
+    "method": "Real Omarchy desktop capture",
+    "resolution": "2560x1440",
+    "applications": [
+      "Alacritty",
+      "Neovim"
+    ],
+    "review": "Wallpaper, native bar, borders, terminal palette, and editor inspected; no personal content or mouse pointer in capture."
+  }
+}

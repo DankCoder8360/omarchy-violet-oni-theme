@@ -1,0 +1,20 @@
+Violet Oni
+
+Theme palette, documentation, and preview source: Violet Oni contributors.
+Wallpaper: generated with OpenAI's built-in image generation tool on
+September 7, 2026. The prompts and resampling process are recorded in
+artwork/PROMPTS.md. No game screenshot or extracted game asset is included.
+The repository's MIT permission applies to contributor-held rights in its
+contents, including artwork to the extent such rights exist.
+
+Inspired by Onimusha: Way of the Sword, a Capcom game. The game name and
+related third-party marks belong to their respective owners. This theme is
+unofficial and is not affiliated with or endorsed by Capcom.
+
+preview.png is a real Omarchy desktop screenshot showing Alacritty and
+Neovim with the theme active. The original illustrative preview is preserved
+as artwork/preview-concept.png.
+
+Omarchy generates application styles from its own templates at theme
+selection time. Those upstream templates are not copied into this repository.
+Yaru-purple is referenced by name; its icon files are not redistributed.

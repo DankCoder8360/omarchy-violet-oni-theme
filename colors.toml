@@ -1,0 +1,38 @@
+# Violet Oni — purple dusk, jade spirit light, moonlit steel.
+mode = "dark"
+
+accent = "#AD86E8"
+selection = "#45305E"
+selection_background = "#45305E"
+selection_foreground = "#F3ECFC"
+muted = "#94849F"
+
+background = "#140F1F"
+dark_background = "#100C19"
+darker_background = "#0C0913"
+lighter_background = "#241733"
+
+foreground = "#E5DDF0"
+dark_foreground = "#AC9EBC"
+light_foreground = "#D1C4E0"
+bright_foreground = "#F3ECFC"
+
+# Native Omarchy gradient tokens keep shell surfaces and borders aligned.
+hyprland_active_border = "rgba(ad86e8ff) rgba(77aeecff) 45deg"
+hyprland_inactive_border = "rgba(45305ecc)"
+
+red = "#EF8C9A"
+yellow = "#DCC18A"
+orange = "#DEA27D"
+green = "#72C99A"
+cyan = "#80CBD1"
+blue = "#77AEEC"
+magenta = "#AD86E8"
+brown = "#B29B86"
+
+bright_red = "#FFA6AF"
+bright_yellow = "#F0D6A3"
+bright_green = "#94DFB3"
+bright_cyan = "#A1E1E5"
+bright_blue = "#9BC7FA"
+bright_magenta = "#C7A6F5"
