@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-07",
+  "result": "passed",
+  "new_backgrounds": ["Road of Ashes", "Last Light Valley"],
+  "source_dimensions": "1672x941",
+  "export_dimensions": ["2560x1440", "3840x2160"],
+  "resampling": "Lanczos; exports are upscaled",
+  "screensaver": {
+    "engine": "/usr/bin/ttfx",
+    "effect": "colorshift",
+    "frames_per_second": 12,
+    "approximate_cycle_seconds": 53,
+    "routing_tests_passed": 4,
+    "shell_syntax": "passed for wrapper and installer",
+    "native_launch": "Confirmed on two 2560x1440 monitors with the custom scene and slow effect arguments",
+    "visual_review": "Both monitor captures inspected; centered text scene with blue, violet, and muted red colors",
+    "dismissal": "Screensaver windows closed when desktop activity resumed; no synthetic keyboard dismissal was needed",
+    "animation_check": "Three-second native engine capture: after initial canvas clear, 34 complete frames retained the same text layout while colors changed",
+    "preview": "screensaver/preview.png is an unmodified 2560x1440 native screensaver capture"
+  }
+}

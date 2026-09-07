@@ -6,7 +6,7 @@ A dark purple [Omarchy](https://omarchy.org/) theme with jade-green and moonlit-
 
 ## Install
 
-Copy this repository's public GitHub URL into **Install → Style → Theme** in the Omarchy menu. From a terminal, replace the example owner with the repository owner:
+Copy this repository's public GitHub URL into **Install → Style → Theme** in the Omarchy menu, or run:
 
 ```bash
 omarchy theme install https://github.com/DankCoder8360/omarchy-violet-oni-theme
@@ -37,7 +37,7 @@ The complete palette includes distinct error, warning, cyan, and bright terminal
 
 `colors.toml` is the source of truth. Omarchy generates the active terminal, Hyprland, shell, and application configurations from its own templates when the theme is selected. These cover Alacritty, Foot, Ghostty, Kitty, btop, Chromium, Neovim, Helix, VS Code, Obsidian, and the native bar, menus, notifications, OSD, and lock screen where those integrations are enabled.
 
-Native gradient tokens provide violet-to-blue active borders, and `icons.theme` selects Omarchy's Yaru-purple icons. The theme keeps Omarchy's layout, font sizing, spacing, and display scaling. No executable theme overrides, plugins, or custom application installations are bundled.
+Native gradient tokens provide violet-to-blue active borders, and `icons.theme` selects Omarchy's Yaru-purple icons. The theme keeps Omarchy's layout, font sizing, spacing, and display scaling. An optional screensaver helper is bundled and installed separately, as described below.
 
 Validated against the Omarchy installation available on September 7, 2026: all 17 generated configurations resolved their templates; TOML/JSON parsed and Lua passed syntax checks. The screenshot above is a real 2560 × 1440 desktop with Alacritty and Neovim, reviewed after applying the theme. See [validation results](validation/report.json).
 
@@ -50,6 +50,29 @@ Validated against the Omarchy installation available on September 7, 2026: all 1
 The cinematic wallpaper is AI-generated using the built-in image generation tool. The **1440p and 4K files are Lanczos-upscaled exports**, not native artwork at those resolutions. The real desktop screenshot is captured at 2560 × 1440; it is not an upscaled screenshot. The background composition works independently on multiple 16:9 monitors.
 
 [Prompts and generation details](artwork/PROMPTS.md) are included. The earlier illustrative mockup is retained separately as `artwork/preview-concept.png`; it is not the gallery submission screenshot.
+
+## Aftermath backgrounds
+
+Two additional cinematic landscapes bring dusk-blue shadows and muted red sunsets to the purple interface. Both depict the quiet aftermath of war in early Edo Japan, with weary adult travelers, packhorses, damaged villages, and ravaged terrain.
+
+| Background | 1440p | 4K |
+| --- | --- | --- |
+| Road of Ashes | [2560 × 1440](backgrounds/03-road-of-ashes-2560x1440.png) | [3840 × 2160](artwork/aftermath/03-road-of-ashes-3840x2160.png) |
+| Last Light Valley | [2560 × 1440](backgrounds/04-last-light-valley-2560x1440.png) | [3840 × 2160](artwork/aftermath/04-last-light-valley-3840x2160.png) |
+
+These exports are also Lanczos-upscaled from 1672 × 941 generated sources. See [aftermath prompts and provenance](artwork/aftermath/PROMPTS.md). With Violet Oni selected, cycle backgrounds using:
+
+```bash
+omarchy theme bg next
+```
+
+## Slow animated ASCII screensaver
+
+The optional screensaver presents a simplified road, horse, traveler, and village as Unicode braille text art. A slow blue → violet → muted red color wave takes approximately 53 seconds per cycle, using Omarchy's existing `ttfx` engine at 12 frames per second.
+
+![Violet Oni ASCII screensaver running on a 1440p monitor](screensaver/preview.png)
+
+See [installation, preview, and removal instructions](screensaver/README.md). The helper applies only while Violet Oni is selected; Omarchy retains its native launch and dismissal behavior. See [screensaver validation](validation/aftermath.json).
 
 ## License and attribution
 
