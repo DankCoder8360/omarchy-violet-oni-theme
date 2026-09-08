@@ -68,13 +68,13 @@ These exports are also Lanczos-upscaled from 1672 × 941 generated sources. See 
 omarchy theme bg next
 ```
 
-## Slow animated ASCII screensaver
+## Four synchronized ASCII scenes
 
-The optional screensaver shuffles four simplified landscape scenes as Unicode braille text art. Each scene receives a moderate animated reveal and rich RGB wave for approximately 11 seconds, using Omarchy's existing `ttfx` engine at 24 frames per second. The palette travels through electric blue, cyan, violet, magenta, red, and green before repeating.
+The optional screensaver assembles Road of Ashes, Wind and Steel, Broken Crossing, and Spirit Lanterns from moving RGB braille characters. Both monitors share matching artwork and animation frames at 24 FPS. Each scene assembles over 11 seconds, then holds for two seconds after all active displays finish. Every shuffled cycle includes all four scenes without a boundary repeat.
 
 ![Violet Oni ASCII screensaver running on a 1440p monitor](screensaver/preview.png)
 
-See [installation, preview, and removal instructions](screensaver/README.md). The helper applies only while Violet Oni is selected; Omarchy retains its native launch and dismissal behavior. See [screensaver validation](validation/aftermath.json).
+See [installation, preview, and removal instructions](screensaver/README.md) and [generation prompts](screensaver/PROMPTS.md). The helper applies only while Violet Oni is selected; Omarchy retains its native launch and dismissal behavior. See [current validation](validation/synchronized-scenes.json); the older aftermath report is historical.
 
 ## License and attribution
 

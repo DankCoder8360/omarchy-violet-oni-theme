@@ -1,24 +1,30 @@
-# Animated ASCII screensaver
+# Four synchronized ASCII scenes
 
-This optional helper uses Omarchy's installed `ttfx` engine and native screensaver launcher. It shuffles four supplied text-art scenes, suppressing immediate repeats. Each pass takes approximately 11 seconds with a moderate reveal and a rich electric-blue → cyan → violet → magenta → red → green color wave at 24 frames per second.
+Road of Ashes, Wind and Steel, Broken Crossing, and Spirit Lanterns assemble from moving RGB braille characters. Both monitors share the same scene, animation frames, seed, and clock. Each animation lasts 11 seconds at 24 FPS; the completed art remains for two seconds after all active players finish.
 
-Install the theme first, then opt into the helper:
+Each shuffled cycle contains all four scenes, with no repeat at the cycle boundary. Only files in `screensaver/scenes/` are active. Older text files remain archived outside that directory.
+
+## Install or update
+
+After installing and selecting Violet Oni:
 
 ```bash
 bash ~/.config/omarchy/themes/violet-oni/screensaver/install.sh
 omarchy launch screensaver force
 ```
 
-The helper is installed as `~/.local/bin/ttfx`. That directory must resolve before `/usr/bin` in the desktop's PATH. It intercepts only the native screensaver's exact branding-file invocation while `violet-oni` is selected and at least one `scene-*.txt` file is present in the active theme. Other calls and other themes execute the original `/usr/bin/ttfx` with their arguments unchanged.
-
-The four bundled scenes are `scene-03-road-of-ashes.txt`, `scene-04-last-light-valley.txt`, `scene-05-ruined-shrine-road.txt`, and `scene-06-moonlit-mountain-pass.txt`. The last selected path is stored under `${XDG_STATE_HOME:-~/.local/state}/omarchy/violet-oni-screensaver/last-scene` so simultaneous monitor launches can coordinate without changing the theme files.
-
-Theme installation alone never executes this installer. No packaged Omarchy files, idle timings, lock settings, or existing branding text are modified. Omarchy continues to launch one terminal per monitor and to control screensaver dismissal and the lock deadline.
-
-To disable the helper reversibly:
+The installer backs up an older Violet Oni helper before updating it. Unrelated existing helpers are refused. To disable reversibly, rename the installed Violet Oni helper:
 
 ```bash
 mv ~/.local/bin/ttfx ~/.local/bin/violet-oni-ttfx.disabled
 ```
 
-Only use this command if `~/.local/bin/ttfx` is the helper installed above. Running screensavers finish using the already-started engine; the next launch uses Omarchy's original random effects.
+## Integration
+
+The helper intercepts only Omarchy's native branding-file screensaver call while Violet Oni is selected and the controller is present. Other themes and ordinary ttfx calls pass through to /usr/bin/ttfx.
+
+The Python standard-library controller renders a shared finite animation with the native ttfx engine, then plays the same cached frames on each terminal using a common monotonic clock. Artwork is centered on a 120 × 40 canvas. A session barrier waits for all living players and the viewing pause; exited players are removed, and unresponsive players expire after ten seconds. Late arrivals join the current animation.
+
+Temporary shared state and the current frame cache live in `$XDG_RUNTIME_DIR/violet-oni-sync` (or `~/.cache/violet-oni-sync` when unavailable). No background daemon is installed. Controller processes use the name ttfx so Omarchy retains its native input, focus, and lock dismissal behavior. Signals terminate rendering children and unregister the player.
+
+No packaged Omarchy files, idle timings, lock settings, or branding files are changed. Existing screenshots of older versions remain historical references. See [artwork prompts](PROMPTS.md).

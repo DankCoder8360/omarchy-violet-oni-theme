@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-07",
+  "scenes": ["Road of Ashes", "Wind and Steel", "Broken Crossing", "Spirit Lanterns"],
+  "sources": "Three new built-in image generations, 1672x941, plus the unchanged Road of Ashes braille scene",
+  "playback": {"fps": 24, "assembly_seconds": 11, "hold_seconds": 2, "canvas": "120x40"},
+  "tests": {
+    "routing": "Native invocation uses controller; other themes, missing controller, and ordinary calls pass through",
+    "cycles": "100 shuffled four-scene cycles verified with no boundary repeats",
+    "barrier": "Waits for active players, holds two seconds, removes a closed player",
+    "artwork": "Four unique scene contents; real ttfx rendering produces over 50 distinct character layouts per scene",
+    "syntax": "Python tests and bash syntax checks passed"
+  },
+  "desktop": {
+    "monitors": ["DP-2 2560x1440", "DP-3 2560x1440"],
+    "observed_order": ["Road of Ashes", "Broken Crossing", "Spirit Lanterns", "Wind and Steel"],
+    "players_per_scene": 2,
+    "completion_observed_seconds": [11.09, 11.24, 11.14, 11.28],
+    "matching_frames": "Completed-scene captures on both monitors have identical SHA-256 hashes for all four scenes",
+    "dismissal": "Escape dismissed both monitors; no ttfx processes remained",
+    "mouse": "Native focus-based dismissal retained; physical mouse input was not independently automated",
+    "previews": "Unmodified native captures in screensaver/previews/"
+  }
+}

@@ -1,88 +1,27 @@
 #!/bin/bash
-# Violet Oni: opt-in pacing for Omarchy's native screensaver only.
-# Other ttfx invocations and other themes pass through unchanged.
+# Violet Oni: synchronized native screensaver, ordinary ttfx calls pass through.
 set -euo pipefail
-
 engine=/usr/bin/ttfx
 theme_dir="$HOME/.local/state/omarchy/current/theme"
-theme_name_file="$HOME/.local/state/omarchy/current/theme.name"
 branding_file="$HOME/.config/omarchy/branding/screensaver.txt"
 theme_name=""
-[[ ! -f $theme_name_file ]] || read -r theme_name <"$theme_name_file"
-
+read -r theme_name <"$HOME/.local/state/omarchy/current/theme.name" 2>/dev/null || true
 original=("$@")
 input_file=""
 random_effect=false
 screensaver_cursor=false
 while (( $# )); do
   case "$1" in
-    -i|--input-file)
+    -i|--input-file|--frame-rate)
       (( $# >= 2 )) || exec "$engine" "${original[@]}"
-      input_file=$2
-      shift 2
-      ;;
+      [[ $1 == --frame-rate ]] || input_file=$2
+      shift 2 ;;
     --random-effect|-R) random_effect=true; shift ;;
     --no-restore-cursor) screensaver_cursor=true; shift ;;
     *) shift ;;
   esac
 done
-
-if [[ $theme_name != "violet-oni" || $input_file != "$branding_file" || $random_effect != true || $screensaver_cursor != true ]]; then
-  exec "$engine" "${original[@]}"
+if [[ $theme_name == violet-oni && $input_file == "$branding_file" && $random_effect == true && $screensaver_cursor == true && -s "$theme_dir/screensaver/controller.py" && -s "$theme_dir/screensaver/scenes/01-road-of-ashes.txt" ]]; then
+  exec /usr/bin/python3 "$theme_dir/screensaver/controller.py" "$theme_dir/screensaver/scenes"
 fi
-
-# Native omarchy-screensaver starts one ttfx process per effect. Use that
-# boundary to rotate through the bundled scenes while keeping each monitor's
-# invocation independent and safe for simultaneous launches.
-scene_dir="$theme_dir/screensaver"
-mapfile -t scenes < <(find "$scene_dir" -maxdepth 1 -type f -name 'scene-*.txt' -size +0c -print 2>/dev/null | sort)
-if (( ${#scenes[@]} == 0 )) && [[ -s "$scene_dir/scene.txt" ]]; then
-  scenes=("$scene_dir/scene.txt")
-fi
-if (( ${#scenes[@]} == 0 )); then
-  exec "$engine" "${original[@]}"
-fi
-
-state_root="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/violet-oni-screensaver"
-state_file="$state_root/last-scene"
-mkdir -p "$state_root"
-exec 9>"$state_file.lock"
-flock -x 9
-last_scene=""
-[[ ! -f "$state_file" ]] || read -r last_scene <"$state_file"
-choices=()
-for candidate in "${scenes[@]}"; do
-  [[ "$candidate" != "$last_scene" ]] && choices+=("$candidate")
-done
-(( ${#choices[@]} )) || choices=("${scenes[@]}")
-random_value=$(od -An -N4 -tu4 /dev/urandom)
-index=$((random_value % ${#choices[@]}))
-scene="${choices[$index]}"
-printf '%s\n' "$scene" >"$state_file"
-flock -u 9
-exec 9>&-
-
-set -- "${original[@]}"
-args=()
-while (( $# )); do
-  case "$1" in
-    -i|--input-file)
-      args+=("$1" "$scene")
-      shift 2
-      ;;
-    --frame-rate)
-      (( $# >= 2 )) || exec "$engine" "${original[@]}"
-      args+=(--frame-rate 24)
-      shift 2
-      ;;
-    --random-effect|-R) shift ;;
-    *) args+=("$1"); shift ;;
-  esac
-done
-
-# 32 smooth steps × 8 frames / 24 fps is about 11 seconds per scene.
-# The matching first/last blue stop makes the rich RGB palette wrap softly.
-exec "$engine" "${args[@]}" colorshift \
-  --gradient-stops 087cf2 00d9ff 7c3aed ff2bd6 ff3b30 00e676 087cf2 \
-  --gradient-steps 32 --gradient-frames 8 --cycles 1000000 \
-  --travel-direction horizontal --skip-final-gradient
+exec "$engine" "${original[@]}"
