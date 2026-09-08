@@ -53,12 +53,14 @@ The cinematic wallpaper is AI-generated using the built-in image generation tool
 
 ## Aftermath backgrounds
 
-Two additional cinematic landscapes bring dusk-blue shadows and muted red sunsets to the purple interface. Both depict the quiet aftermath of war in early Edo Japan, with weary adult travelers, packhorses, damaged villages, and ravaged terrain.
+Four cinematic landscapes bring dusk-blue shadows, rich RGB highlights, and muted red sunsets to the purple interface. They depict the quiet aftermath and supernatural atmosphere of early Edo Japan, with weary travelers, damaged villages, shrine paths, ravaged terrain, and mountain mist.
 
 | Background | 1440p | 4K |
 | --- | --- | --- |
 | Road of Ashes | [2560 × 1440](backgrounds/03-road-of-ashes-2560x1440.png) | [3840 × 2160](artwork/aftermath/03-road-of-ashes-3840x2160.png) |
 | Last Light Valley | [2560 × 1440](backgrounds/04-last-light-valley-2560x1440.png) | [3840 × 2160](artwork/aftermath/04-last-light-valley-3840x2160.png) |
+| Ruined Shrine Road | [2560 × 1440](backgrounds/05-ruined-shrine-road-2560x1440.png) | [3840 × 2160](artwork/aftermath/05-ruined-shrine-road-3840x2160.png) |
+| Moonlit Mountain Pass | [2560 × 1440](backgrounds/06-moonlit-mountain-pass-2560x1440.png) | [3840 × 2160](artwork/aftermath/06-moonlit-mountain-pass-3840x2160.png) |
 
 These exports are also Lanczos-upscaled from 1672 × 941 generated sources. See [aftermath prompts and provenance](artwork/aftermath/PROMPTS.md). With Violet Oni selected, cycle backgrounds using:
 
@@ -66,13 +68,13 @@ These exports are also Lanczos-upscaled from 1672 × 941 generated sources. See 
 omarchy theme bg next
 ```
 
-## Slow animated ASCII screensaver
+## Four synchronized ASCII scenes
 
-The optional screensaver presents a simplified road, horse, traveler, and village as Unicode braille text art. A slow blue → violet → muted red color wave takes approximately 53 seconds per cycle, using Omarchy's existing `ttfx` engine at 12 frames per second.
+The optional screensaver assembles Road of Ashes, Wind and Steel, Broken Crossing, and Spirit Lanterns from moving RGB braille characters. Both monitors share matching artwork and animation frames at 24 FPS. Each scene assembles over 11 seconds, then holds for two seconds after all active displays finish. Every shuffled cycle includes all four scenes without a boundary repeat.
 
 ![Violet Oni ASCII screensaver running on a 1440p monitor](screensaver/preview.png)
 
-See [installation, preview, and removal instructions](screensaver/README.md). The helper applies only while Violet Oni is selected; Omarchy retains its native launch and dismissal behavior. See [screensaver validation](validation/aftermath.json).
+See [installation, preview, and removal instructions](screensaver/README.md) and [generation prompts](screensaver/PROMPTS.md). The helper applies only while Violet Oni is selected; Omarchy retains its native launch and dismissal behavior. See [current validation](validation/synchronized-scenes.json); the older aftermath report is historical.
 
 ## License and attribution
 

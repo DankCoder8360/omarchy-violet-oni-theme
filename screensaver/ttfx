@@ -1,58 +1,27 @@
 #!/bin/bash
-# Violet Oni: opt-in pacing for Omarchy's native screensaver only.
-# Other ttfx invocations and other themes pass through unchanged.
+# Violet Oni: synchronized native screensaver, ordinary ttfx calls pass through.
 set -euo pipefail
-
 engine=/usr/bin/ttfx
 theme_dir="$HOME/.local/state/omarchy/current/theme"
-theme_name_file="$HOME/.local/state/omarchy/current/theme.name"
 branding_file="$HOME/.config/omarchy/branding/screensaver.txt"
-scene="$theme_dir/screensaver/scene.txt"
 theme_name=""
-[[ ! -f $theme_name_file ]] || read -r theme_name <"$theme_name_file"
-
+read -r theme_name <"$HOME/.local/state/omarchy/current/theme.name" 2>/dev/null || true
 original=("$@")
 input_file=""
 random_effect=false
 screensaver_cursor=false
 while (( $# )); do
   case "$1" in
-    -i|--input-file)
+    -i|--input-file|--frame-rate)
       (( $# >= 2 )) || exec "$engine" "${original[@]}"
-      input_file=$2
-      shift 2
-      ;;
+      [[ $1 == --frame-rate ]] || input_file=$2
+      shift 2 ;;
     --random-effect|-R) random_effect=true; shift ;;
     --no-restore-cursor) screensaver_cursor=true; shift ;;
     *) shift ;;
   esac
 done
-
-if [[ $theme_name != "violet-oni" || $input_file != "$branding_file" || $random_effect != true || $screensaver_cursor != true || ! -s $scene ]]; then
-  exec "$engine" "${original[@]}"
+if [[ $theme_name == violet-oni && $input_file == "$branding_file" && $random_effect == true && $screensaver_cursor == true && -s "$theme_dir/screensaver/controller.py" && -s "$theme_dir/screensaver/scenes/01-road-of-ashes.txt" ]]; then
+  exec /usr/bin/python3 "$theme_dir/screensaver/controller.py" "$theme_dir/screensaver/scenes"
 fi
-
-set -- "${original[@]}"
-args=()
-while (( $# )); do
-  case "$1" in
-    -i|--input-file)
-      args+=("$1" "$scene")
-      shift 2
-      ;;
-    --frame-rate)
-      (( $# >= 2 )) || exec "$engine" "${original[@]}"
-      args+=(--frame-rate 12)
-      shift 2
-      ;;
-    --random-effect|-R) shift ;;
-    *) args+=("$1"); shift ;;
-  esac
-done
-
-# 160 smooth steps × 4 frames / 12 fps is about 53 seconds per cycle.
-# The matching first/last blue stop makes the palette wrap softly.
-exec "$engine" "${args[@]}" colorshift \
-  --gradient-stops 244a74 668cb9 856c99 b26474 a94154 244a74 \
-  --gradient-steps 32 --gradient-frames 4 --cycles 1000000 \
-  --travel-direction horizontal --skip-final-gradient
+exec "$engine" "${original[@]}"

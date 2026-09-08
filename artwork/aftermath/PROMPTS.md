@@ -29,12 +29,29 @@ omarchy transcode ascii screensaver/source.png screensaver/scene.txt --width 120
 
 The color animation is rendered at runtime by the native `ttfx colorshift` effect; it is not a video or an animated bitmap.
 
+## Ruined Shrine Road
+
+Source: `05-ruined-shrine-road-source.png`, 1672 × 941. This scene was generated as a new environmental interpretation for the multi-scene screensaver:
+
+Use case: historical-scene. Asset type: 16:9 desktop wallpaper source for an Omarchy theme. Create a cinematic photorealistic early Edo-period Japanese shrine path after a devastating war, seen at dusk from a wide quiet perspective. A damaged vermilion torii gate and small weathered shrine stand beside a winding dirt path. Torn prayer strips and faded cloth banners move gently in the wind. A broken handcart, extinguished lanterns, scattered roof tiles, and trampled grass suggest displacement without showing violence. A single tiny fully clothed adult traveler in simple period garments walks away in the middle distance; no child and no samurai character. Hills and dark cedar trees recede into smoky blue haze beneath a dramatic sunset band. Cinematic realism, tactile natural materials, historically grounded early Edo Japan, restrained film still. Deep cobalt and midnight blue shadows, cyan haze, violet transition tones, muted crimson and scarlet sunset. No active battle, bodies, gore, injuries, weapons in use, modern objects, text, logos, or watermark.
+
+## Moonlit Mountain Pass
+
+Source: `06-moonlit-mountain-pass-source.png`, 1672 × 941. This scene was generated as a new environmental interpretation for the multi-scene screensaver:
+
+Use case: historical-scene. Asset type: 16:9 desktop wallpaper source for an Omarchy theme. Create a cinematic photorealistic early Edo-period Japanese mountain pass at blue hour after war, viewed as a broad environmental landscape. A narrow road climbs between wind-bent pines and jagged dark ridges. Abandoned wooden way markers, a torn standard, a simple sheathed sword beside a travel bundle, and a half-collapsed roadside shelter suggest a vanished journey. Faint violet mist curls through the ravine like an uncanny oni presence, atmospheric and ambiguous rather than a literal creature. No child and no samurai character; no foreground people. Last light fades into blue hour with cold moonlit haze, cobalt and electric blue shadows, cyan edge light, violet and magenta mist, ember-red horizon, and small green accents in moss and distant lantern glass. No active battle, bodies, gore, injuries, modern objects, readable writing, text, logos, or watermark.
+
 ## Resolution exports
 
-Both landscape sources were resized with ImageMagick's Lanczos filter to exact 2560 × 1440 and 3840 × 2160 dimensions. These are upscaled exports, not native 1440p or 4K generations. The tiny source aspect-ratio difference is absorbed by resizing to exact 16:9.
+All four landscape sources were resized with ImageMagick's Lanczos filter to exact 2560 × 1440 and 3840 × 2160 dimensions. These are upscaled exports, not native 1440p or 4K generations. The tiny source aspect-ratio difference is absorbed by resizing to exact 16:9.
 
 ```bash
 magick source.png -filter Lanczos -resize '2560x1440!' wallpaper.png
 magick source.png -filter Lanczos -resize '3840x2160!' export-4k.png
 ```
 
+The four source images were converted to terminal scenes with the same native command shape, using scene-specific output names:
+
+```bash
+omarchy transcode ascii source.png screensaver/scene-XX-name.txt --width 120 --height 40 --mode braille --threshold 28 --invert --no-trim
+```

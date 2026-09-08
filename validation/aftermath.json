@@ -1,21 +1,24 @@
 {
+  "historical_report": "Superseded for screensaver behavior by synchronized-scenes.json",
   "date": "2026-09-07",
   "result": "passed",
-  "new_backgrounds": ["Road of Ashes", "Last Light Valley"],
+  "new_backgrounds": ["Road of Ashes", "Last Light Valley", "Ruined Shrine Road", "Moonlit Mountain Pass"],
   "source_dimensions": "1672x941",
   "export_dimensions": ["2560x1440", "3840x2160"],
   "resampling": "Lanczos; exports are upscaled",
   "screensaver": {
     "engine": "/usr/bin/ttfx",
     "effect": "colorshift",
-    "frames_per_second": 12,
-    "approximate_cycle_seconds": 53,
+    "frames_per_second": 24,
+    "approximate_scene_seconds": 11,
+    "gradient_stops": ["087cf2", "00d9ff", "7c3aed", "ff2bd6", "ff3b30", "00e676", "087cf2"],
+    "scene_selection": "shuffled with immediate repeats suppressed",
     "routing_tests_passed": 4,
     "shell_syntax": "passed for wrapper and installer",
-    "native_launch": "Confirmed on two 2560x1440 monitors with the custom scene and slow effect arguments",
-    "visual_review": "Both monitor captures inspected; centered text scene with blue, violet, and muted red colors",
+    "native_launch": "Confirmed on two 2560x1440 monitors with the custom scene and moderate effect arguments",
+    "visual_review": "New source scenes and braille conversions inspected; centered text scene with blue, cyan, violet, magenta, red, and green colors",
     "dismissal": "Screensaver windows closed when desktop activity resumed; no synthetic keyboard dismissal was needed",
-    "animation_check": "Three-second native engine capture: after initial canvas clear, 34 complete frames retained the same text layout while colors changed",
+    "animation_check": "Five-second native engine capture: 119 complete frames retained the same text layout while 120 distinct RGB codes changed",
     "preview": "screensaver/preview.png is an unmodified 2560x1440 native screensaver capture"
   }
 }
