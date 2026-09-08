@@ -7,7 +7,6 @@ engine=/usr/bin/ttfx
 theme_dir="$HOME/.local/state/omarchy/current/theme"
 theme_name_file="$HOME/.local/state/omarchy/current/theme.name"
 branding_file="$HOME/.config/omarchy/branding/screensaver.txt"
-scene="$theme_dir/screensaver/scene.txt"
 theme_name=""
 [[ ! -f $theme_name_file ]] || read -r theme_name <"$theme_name_file"
 
@@ -28,9 +27,40 @@ while (( $# )); do
   esac
 done
 
-if [[ $theme_name != "violet-oni" || $input_file != "$branding_file" || $random_effect != true || $screensaver_cursor != true || ! -s $scene ]]; then
+if [[ $theme_name != "violet-oni" || $input_file != "$branding_file" || $random_effect != true || $screensaver_cursor != true ]]; then
   exec "$engine" "${original[@]}"
 fi
+
+# Native omarchy-screensaver starts one ttfx process per effect. Use that
+# boundary to rotate through the bundled scenes while keeping each monitor's
+# invocation independent and safe for simultaneous launches.
+scene_dir="$theme_dir/screensaver"
+mapfile -t scenes < <(find "$scene_dir" -maxdepth 1 -type f -name 'scene-*.txt' -size +0c -print 2>/dev/null | sort)
+if (( ${#scenes[@]} == 0 )) && [[ -s "$scene_dir/scene.txt" ]]; then
+  scenes=("$scene_dir/scene.txt")
+fi
+if (( ${#scenes[@]} == 0 )); then
+  exec "$engine" "${original[@]}"
+fi
+
+state_root="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/violet-oni-screensaver"
+state_file="$state_root/last-scene"
+mkdir -p "$state_root"
+exec 9>"$state_file.lock"
+flock -x 9
+last_scene=""
+[[ ! -f "$state_file" ]] || read -r last_scene <"$state_file"
+choices=()
+for candidate in "${scenes[@]}"; do
+  [[ "$candidate" != "$last_scene" ]] && choices+=("$candidate")
+done
+(( ${#choices[@]} )) || choices=("${scenes[@]}")
+random_value=$(od -An -N4 -tu4 /dev/urandom)
+index=$((random_value % ${#choices[@]}))
+scene="${choices[$index]}"
+printf '%s\n' "$scene" >"$state_file"
+flock -u 9
+exec 9>&-
 
 set -- "${original[@]}"
 args=()
@@ -42,7 +72,7 @@ while (( $# )); do
       ;;
     --frame-rate)
       (( $# >= 2 )) || exec "$engine" "${original[@]}"
-      args+=(--frame-rate 12)
+      args+=(--frame-rate 24)
       shift 2
       ;;
     --random-effect|-R) shift ;;
@@ -50,9 +80,9 @@ while (( $# )); do
   esac
 done
 
-# 160 smooth steps × 4 frames / 12 fps is about 53 seconds per cycle.
-# The matching first/last blue stop makes the palette wrap softly.
+# 32 smooth steps × 8 frames / 24 fps is about 11 seconds per scene.
+# The matching first/last blue stop makes the rich RGB palette wrap softly.
 exec "$engine" "${args[@]}" colorshift \
-  --gradient-stops 244a74 668cb9 856c99 b26474 a94154 244a74 \
-  --gradient-steps 32 --gradient-frames 4 --cycles 1000000 \
+  --gradient-stops 087cf2 00d9ff 7c3aed ff2bd6 ff3b30 00e676 087cf2 \
+  --gradient-steps 32 --gradient-frames 8 --cycles 1000000 \
   --travel-direction horizontal --skip-final-gradient

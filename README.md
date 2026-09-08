@@ -53,12 +53,14 @@ The cinematic wallpaper is AI-generated using the built-in image generation tool
 
 ## Aftermath backgrounds
 
-Two additional cinematic landscapes bring dusk-blue shadows and muted red sunsets to the purple interface. Both depict the quiet aftermath of war in early Edo Japan, with weary adult travelers, packhorses, damaged villages, and ravaged terrain.
+Four cinematic landscapes bring dusk-blue shadows, rich RGB highlights, and muted red sunsets to the purple interface. They depict the quiet aftermath and supernatural atmosphere of early Edo Japan, with weary travelers, damaged villages, shrine paths, ravaged terrain, and mountain mist.
 
 | Background | 1440p | 4K |
 | --- | --- | --- |
 | Road of Ashes | [2560 × 1440](backgrounds/03-road-of-ashes-2560x1440.png) | [3840 × 2160](artwork/aftermath/03-road-of-ashes-3840x2160.png) |
 | Last Light Valley | [2560 × 1440](backgrounds/04-last-light-valley-2560x1440.png) | [3840 × 2160](artwork/aftermath/04-last-light-valley-3840x2160.png) |
+| Ruined Shrine Road | [2560 × 1440](backgrounds/05-ruined-shrine-road-2560x1440.png) | [3840 × 2160](artwork/aftermath/05-ruined-shrine-road-3840x2160.png) |
+| Moonlit Mountain Pass | [2560 × 1440](backgrounds/06-moonlit-mountain-pass-2560x1440.png) | [3840 × 2160](artwork/aftermath/06-moonlit-mountain-pass-3840x2160.png) |
 
 These exports are also Lanczos-upscaled from 1672 × 941 generated sources. See [aftermath prompts and provenance](artwork/aftermath/PROMPTS.md). With Violet Oni selected, cycle backgrounds using:
 
@@ -68,7 +70,7 @@ omarchy theme bg next
 
 ## Slow animated ASCII screensaver
 
-The optional screensaver presents a simplified road, horse, traveler, and village as Unicode braille text art. A slow blue → violet → muted red color wave takes approximately 53 seconds per cycle, using Omarchy's existing `ttfx` engine at 12 frames per second.
+The optional screensaver shuffles four simplified landscape scenes as Unicode braille text art. Each scene receives a moderate animated reveal and rich RGB wave for approximately 11 seconds, using Omarchy's existing `ttfx` engine at 24 frames per second. The palette travels through electric blue, cyan, violet, magenta, red, and green before repeating.
 
 ![Violet Oni ASCII screensaver running on a 1440p monitor](screensaver/preview.png)
 

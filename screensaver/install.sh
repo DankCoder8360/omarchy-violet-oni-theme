@@ -12,6 +12,12 @@ if [[ -e $target || -L $target ]]; then
     echo "Violet Oni screensaver helper is already installed."
     exit 0
   fi
+  if grep -q '^# Violet Oni:' "$target" && grep -q 'engine=/usr/bin/ttfx' "$target"; then
+    install -m 755 "$source_dir/ttfx" "$target"
+    hash -r
+    echo "Updated the Violet Oni screensaver helper: $target"
+    exit 0
+  fi
   echo "An existing $target was found; it has not been overwritten." >&2
   exit 1
 fi
